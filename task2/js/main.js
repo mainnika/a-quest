@@ -400,7 +400,7 @@ window.cancelRequestAnimFrame = (function () {
     ctx.font = "20px Roboto, sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText("Сохраняю результат...", W / 2, H / 2 + 25);
+    ctx.fillText("Saving...", W / 2, H / 2 + 25);
 
     var key = sessionStorage.getItem("key");
 
@@ -412,7 +412,7 @@ window.cancelRequestAnimFrame = (function () {
       .catch(function () { })
       .then(function (approval) {
         if (!approval) {
-          ctx.fillText("Не удалось сохранить с этим ключом", W / 2, H / 2 + 65);
+          ctx.fillText("Cannot save with this key", W / 2, H / 2 + 65);
           return
         }
 

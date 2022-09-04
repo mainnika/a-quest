@@ -135,14 +135,14 @@ func (a *Api) checkScore(ctx *routing.Context) (err error) {
 
 	if int64(zz[0].Score) > score.Score {
 		resp.Msg = []string{
-			`ух, хорошая игра, но нужно стараться еще!`,
+			`what a game! but try harder next time`,
 		}
 	} else {
 		resp.Msg = []string{
-			`поздравляю с победой`,
-			`следующий уровень ищи здесь:`,
+			`congratulations! you are the winner!`,
+			`to enter the next level use:`,
 			`nc 1451e73305328869824eda4c81a75cb5.mehrweg.ga 31337`,
-			`отправь туда ключ чтобы открыть`,
+			`send your existing key to the server to let the next level run`,
 		}
 
 		_, err = a.Redis.SAdd(a.WinnersKey, claims.Id).Result()

@@ -111,7 +111,7 @@ func (a *Api) checkAnswer(ctx *routing.Context) (err error) {
 	claims := &jwtgo.StandardClaims{
 		Id:       id.String(),
 		Subject:  answer.Name,
-		Issuer:   "Anonymous Moroz Grandfather",
+		Issuer:   "a quest",
 		IssuedAt: now.Unix(),
 	}
 
@@ -125,8 +125,8 @@ func (a *Api) checkAnswer(ctx *routing.Context) (err error) {
 
 	ctx.Response.Header.Set("Content-Type", "application/json")
 	_, err = ctx.WriteString(fmt.Sprintf(`
-["переход на следующий уровень ищи в альтернативном имени безопасного узла",
-"используй ключ чтобы открыть следующий уровень",
+["to find the next level check the subject alternative name",
+"and use there this key to continue",
 "%s"]
 `, jwt))
 	if err != nil {

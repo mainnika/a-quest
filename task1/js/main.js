@@ -42,7 +42,7 @@ import '../css/util.css';
       a.removeClass("hidden");
 
       if (!approval.length) {
-        return msg.text("ну что-то сломалось 😅");
+        return msg.text("something bad happend 😅");
       }
 
       msg.empty();
@@ -56,11 +56,11 @@ import '../css/util.css';
     var notpass = function () {
       bt.attr("disabled", false);
       bg.css("background", "");
-      txt.text("хм, давай еще 🧐");
+      txt.text("nope, try again 🧐");
       setTimeout((bt.addClass("animated shake"), function () { bt.removeClass("animated shake") }), 1000);
     }
 
-    var rocking = setInterval((txt.text("хм 🚀"), function () { txt.text(txt.text() + "🚀") }), 50);
+    var rocking = setInterval((txt.text("hmm 🚀"), function () { txt.text(txt.text() + "🚀") }), 50);
 
     fetch('/answer/check', {
       method: 'POST',
