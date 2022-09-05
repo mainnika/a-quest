@@ -10,6 +10,6 @@ task:
   remotePostboxPath: "/root/a-quest/deploy/task3/postbox"
 
 redis:
-  addr: "localhost:6379"
+  addr: "redis:6379"
   scoreKey: "pingpong-scores"
   winnersKey: "pingpong-winners"
