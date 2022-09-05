@@ -11,6 +11,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/valyala/fasthttp"
 
+	"github.com/mainnika/a-quest/keys"
 	"github.com/mainnika/a-quest/task2-backend/lib"
 	. "github.com/mainnika/a-quest/task2-backend/lib/configure"
 	. "github.com/mainnika/a-quest/task2-backend/lib/env"
@@ -70,19 +71,19 @@ func main() {
 		DB:       0,  // use default DB
 	})
 
-	pubKey, err := jwtgo.ParseECPublicKeyFromPEM(publicKey)
+	pubKey, err := jwtgo.ParseECPublicKeyFromPEM(keys.PublicKey)
 	if err != nil {
 		log.Fatalf("can not parse jwt key: %s", err)
 	}
 
-	privKey, err := jwtgo.ParseECPrivateKeyFromPEM(privateKey)
+	privKey, err := jwtgo.ParseECPrivateKeyFromPEM(keys.PrivateKey)
 	if err != nil {
 		log.Fatalf("can not parse jwt key: %s", err)
 	}
 
 	apiserv := &lib.Api{
 		Base:       Config.HttpAPI.Base,
-		Alg:        alg,
+		Alg:        keys.Alg,
 		Pub:        pubKey,
 		Priv:       privKey,
 		ScoresKey:  Config.Redis.ScoreKey,

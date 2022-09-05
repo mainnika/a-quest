@@ -10,6 +10,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/valyala/fasthttp"
 
+	"github.com/mainnika/a-quest/keys"
 	"github.com/mainnika/a-quest/task1-backend/lib"
 	. "github.com/mainnika/a-quest/task1-backend/lib/configure"
 	. "github.com/mainnika/a-quest/task1-backend/lib/env"
@@ -63,22 +64,22 @@ func main() {
 	log.Debugf("version: %s", version)
 	log.Debugf("cfg: %v", Config)
 
-	pubKey, err := jwtgo.ParseECPublicKeyFromPEM(publicKey)
+	pubKey, err := jwtgo.ParseECPublicKeyFromPEM(keys.PublicKey)
 	if err != nil {
 		log.Fatalf("can not parse jwt key: %s", err)
 	}
 
-	privKey, err := jwtgo.ParseECPrivateKeyFromPEM(privateKey)
+	privKey, err := jwtgo.ParseECPrivateKeyFromPEM(keys.PrivateKey)
 	if err != nil {
 		log.Fatalf("can not parse jwt key: %s", err)
 	}
 
 	apiserv := &lib.Api{
 		Base:   Config.HttpAPI.Base,
-		Alg:    alg,
 		Pub:    pubKey,
 		Priv:   privKey,
-		Answer: answer,
+		Alg:    keys.Alg,
+		Answer: keys.Answer,
 	}
 
 	httpStart(apiserv)

@@ -12,6 +12,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/valyala/fasthttp"
 
+	"github.com/mainnika/a-quest/keys"
 	"github.com/mainnika/a-quest/task3-backend/lib"
 	. "github.com/mainnika/a-quest/task3-backend/lib/configure"
 	. "github.com/mainnika/a-quest/task3-backend/lib/env"
@@ -92,12 +93,12 @@ func main() {
 		log.Fatalf("can not init docklient: %s", err)
 	}
 
-	pubKey, err := jwtgo.ParseECPublicKeyFromPEM(publicKey)
+	pubKey, err := jwtgo.ParseECPublicKeyFromPEM(keys.PublicKey)
 	if err != nil {
 		log.Fatalf("can not parse jwt key: %s", err)
 	}
 
-	privKey, err := jwtgo.ParseECPrivateKeyFromPEM(privateKey)
+	privKey, err := jwtgo.ParseECPrivateKeyFromPEM(keys.PrivateKey)
 	if err != nil {
 		log.Fatalf("can not parse jwt key: %s", err)
 	}
@@ -109,7 +110,7 @@ func main() {
 	}
 
 	taskserv := &lib.Server{
-		Alg:               alg,
+		Alg:               keys.Alg,
 		Pub:               pubKey,
 		Priv:              privKey,
 		Docker:            docklient,
