@@ -9,6 +9,8 @@ services:
       - "./postbox:/app/postbox"
       - "../../keys/letter:/app/letter"
     restart: unless-stopped
+    ports:
+      - "31337:31337"
     networks:
       net:
         ipv4_address: 10.103.204.3
